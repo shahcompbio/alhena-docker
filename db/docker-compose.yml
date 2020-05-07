@@ -107,4 +107,4 @@ services:
       - certs:$CERTS_DIR
 
 volumes:
-  - certs
+  certs:
