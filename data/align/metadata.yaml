@@ -1,0 +1,25 @@
+filenames:
+- A73044A_alignment_metrics.csv
+- A73044A_alignment_metrics.csv.gz.yaml
+- A73044A_gc_metrics.csv
+- A73044A_gc_metrics.csv.gz.yaml
+- input.yaml
+meta:
+  command: /opt/conda/bin/single_cell alignment --input_yaml /home/jpham/sc_runs/SC-3423/align/inputs.yaml
+    --out_dir singlecellresults/results/SC-3423/results/align --tmpdir singlecelltemp/temp/SC-3423
+    --pipelinedir singlecelllogs/pipeline/SC-3423 --library_id A73044A --config_override
+    {"cluster":"azure","aligner":"bwa-mem","reference":"grch37","smoothing_function":"modal","alignment":{"fastq_screen_params":{"strict_validation":false}}}
+    --maxjobs 400 --nocleanup --sentinel_only --context_config /home/jpham/saltant/context_config.yaml
+    --bams_dir singlecellstorage/data/single_cell_indexing/bam/A73044A/grch37/BWA_MEM_0_7_6A/numlanes_6/SC-3423
+    --submit azurebatch --storage azureblob
+  input_yaml: input.yaml
+  lane_ids:
+  - CBDF0ANXX_4
+  - CBTB4ANXX_1
+  - CBTB4ANXX_2
+  - CBTB4ANXX_3
+  - CBTB4ANXX_4
+  - CBTB4ANXX_5
+  library_id: A73044A
+  type: alignment
+  version: 0.5.14

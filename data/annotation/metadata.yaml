@@ -1,0 +1,14 @@
+filenames:
+- A73044A_metrics.csv
+- A73044A_metrics.csv.gz.yaml
+- input.yaml
+meta:
+  command: /opt/conda/bin/single_cell annotation --input_yaml /home/jpham/sc_runs/SC-3423/sc_annotation_BWA_MEM_HG19_A73044A_5f2c4ae5/inputs.yaml
+    --tmpdir singlecelltemp/temp/analysis_5819 --pipelinedir singlecelllogs/pipeline/analysis_5819
+    --maxjobs 400 --nocleanup --sentinel_only --context_config /home/jpham/saltant/context_config.yaml
+    --library_id A73044A --out_dir singlecellresults/results/SC-3423/results/annotation
+    --loglevel ERROR --submit azurebatch --storage azureblob
+  input_yaml: input.yaml
+  library_id: A73044A
+  type: annotation
+  version: 0.5.21

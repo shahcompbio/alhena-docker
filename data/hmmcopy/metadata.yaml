@@ -1,0 +1,18 @@
+filenames:
+- A73044A_reads.csv
+- A73044A_reads.csv.gz.yaml
+- A73044A_segments.csv
+- A73044A_segments.csv.gz.yaml
+- A73044A_hmmcopy_metrics.csv
+- A73044A_hmmcopy_metrics.csv.gz.yaml
+- input.yaml
+meta:
+  command: /opt/conda/bin/single_cell hmmcopy --input_yaml /home/jpham/sc_runs/SC-3423/sc_hmmcopy_BWA_MEM_HG19_A73044A_5f2c4ae5/inputs.yaml
+    --tmpdir singlecelltemp/temp/analysis_4112 --pipelinedir singlecelllogs/pipeline/analysis_4112
+    --maxjobs 400 --nocleanup --sentinel_only --context_config /home/jpham/saltant/context_config.yaml
+    --library_id A73044A --out_dir singlecellresults/results/SC-3423/results/hmmcopy
+    --loglevel ERROR --submit azurebatch --storage azureblob
+  input_yaml: input.yaml
+  library_id: A73044A
+  type: hmmcopy
+  version: 0.5.21

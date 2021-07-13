@@ -1,0 +1,5 @@
+alignment_metrics: singlecellresults/results/SC-3423/results/align/A73044A_alignment_metrics.csv.gz
+gc_metrics: singlecellresults/results/SC-3423/results/align/A73044A_gc_metrics.csv.gz
+hmmcopy_metrics: singlecellresults/results/SC-3423/results/hmmcopy/A73044A_hmmcopy_metrics.csv.gz
+hmmcopy_reads: singlecellresults/results/SC-3423/results/hmmcopy/A73044A_reads.csv.gz
+segs_pdf_tar: singlecellresults/results/SC-3423/results/hmmcopy/A73044A_segs.tar.gz
