@@ -1,0 +1,30 @@
+version: "3"
+services:
+    graphql:
+      container_name: alhena-graphql
+      image: shahcompbio/alhena-graphql:staging
+      environment:
+      - HOST=!!!https://www.google.ca/alhena/db
+      env_file:
+        - graphql.env
+    frontend:
+      container_name: alhena-react
+      image: alhena
+      ports:
+        - "5020:80"
+      depends_on:
+        - graphql
+    redis:
+      image: redis
+      container_name: redis
+      ports:
+        - "6379:6379"
+      expose:
+        - 6379
+      volumes:
+        - redisData:/data
+
+
+volumes:
+    redisData:
+        driver: local

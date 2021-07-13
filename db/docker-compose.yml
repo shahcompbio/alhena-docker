@@ -1,7 +1,7 @@
 version: "3"
 services:
   es01:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.3
     container_name: es01
     environment:
       - node.name=es01
@@ -42,7 +42,7 @@ services:
       retries: 5
 
   es02:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.3
     container_name: es02
     environment:
       - node.name=es02
@@ -74,7 +74,7 @@ services:
       - /backup/elasticsearch:/usr/share/elasticsearch/backup
       - certs:$CERTS_DIR
   es03:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.3
     container_name: es03
     environment:
       - node.name=es03
