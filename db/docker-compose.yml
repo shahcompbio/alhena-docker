@@ -30,8 +30,8 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - /n01:/usr/share/elasticsearch/data
-      - /backup/elasticsearch:/usr/share/elasticsearch/backup
+      - /mnt/data1:/usr/share/elasticsearch/data
+      - /mnt/data4:/usr/share/elasticsearch/backup
       - certs:$CERTS_DIR
     ports:
       - 9200:9200
@@ -70,8 +70,8 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - /n02:/usr/share/elasticsearch/data
-      - /backup/elasticsearch:/usr/share/elasticsearch/backup
+      - /mnt/data2:/usr/share/elasticsearch/data
+      - /mnt/data4:/usr/share/elasticsearch/backup
       - certs:$CERTS_DIR
   es03:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.13.3
@@ -102,8 +102,8 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - /n03:/usr/share/elasticsearch/data
-      - /backup/elasticsearch:/usr/share/elasticsearch/backup
+      - /mnt/data3:/usr/share/elasticsearch/data
+      - /mnt/data4:/usr/share/elasticsearch/backup
       - certs:$CERTS_DIR
 
 volumes:
