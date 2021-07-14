@@ -1,4 +1,4 @@
-FROM shahcompbio/alhena as builder
+FROM shahcompbio/alhena-react as builder
 
 WORKDIR /usr/src/app
 
