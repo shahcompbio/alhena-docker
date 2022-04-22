@@ -121,7 +121,7 @@ columns:
   name: fastqscreen_mm10
 - dtype: int
   name: unmapped_reads
-- dtype: int
+- dtype: float
   name: order_corrupt_tree
 header: true
 sep: ','
