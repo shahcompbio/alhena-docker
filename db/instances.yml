@@ -19,3 +19,38 @@ instances:
       - localhost
     ip:
       - 127.0.0.1
+
+  - name: es04
+    dns:
+      - es04
+      - localhost
+    ip:
+      - 127.0.0.1
+
+  - name: es05
+    dns:
+      - es05
+      - localhost
+    ip:
+      - 127.0.0.1
+
+  - name: es06
+    dns:
+      - es06
+      - localhost
+    ip:
+      - 127.0.0.1
+
+  - name: es07
+    dns:
+      - es07
+      - localhost
+    ip:
+      - 127.0.0.1
+
+  - name: es08
+    dns:
+      - es08
+      - localhost
+    ip:
+      - 127.0.0.1

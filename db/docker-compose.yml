@@ -5,11 +5,11 @@ services:
     container_name: es01
     environment:
       - node.name=es01
-      - discovery.seed_hosts=es02,es03
-      - cluster.initial_master_nodes=es01,es02,es03
+      - discovery.seed_hosts=es02,es03,es04,es05,es06,es07,es08
+      - cluster.initial_master_nodes=es01,es02,es03,es04,es05,es06,es07,es08
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - "ES_JAVA_OPTS=-Xms4g -Xmx4g"
       - search.max_buckets=50000
       - http.max_content_length=500mb
       - "path.repo=/usr/share/elasticsearch/backup"
@@ -31,8 +31,8 @@ services:
         hard: -1
     volumes:
       - /mnt/data1:/usr/share/elasticsearch/data
-      - /mnt/data4:/usr/share/elasticsearch/backup
-      - certs:$CERTS_DIR
+      - /mnt/backup:/usr/share/elasticsearch/backup
+      - ./certs:$CERTS_DIR
     ports:
       - 9200:9200
     healthcheck:
@@ -46,11 +46,11 @@ services:
     container_name: es02
     environment:
       - node.name=es02
-      - discovery.seed_hosts=es01,es03
-      - cluster.initial_master_nodes=es01,es02,es03
+      - discovery.seed_hosts=es01,es03,es04,es05,es06,es07,es08
+      - cluster.initial_master_nodes=es01,es02,es03,es04,es05,es06,es07,es08
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - "ES_JAVA_OPTS=-Xms4g -Xmx4g"
       - search.max_buckets=50000
       - http.max_content_length=500mb
       - "path.repo=/usr/share/elasticsearch/backup"
@@ -71,18 +71,18 @@ services:
         hard: -1
     volumes:
       - /mnt/data2:/usr/share/elasticsearch/data
-      - /mnt/data4:/usr/share/elasticsearch/backup
-      - certs:$CERTS_DIR
+      - /mnt/backup:/usr/share/elasticsearch/backup
+      - ./certs:$CERTS_DIR
   es03:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
     container_name: es03
     environment:
       - node.name=es03
-      - discovery.seed_hosts=es01,es02
-      - cluster.initial_master_nodes=es01,es02,es03
+      - discovery.seed_hosts=es01,es02,es04,es05,es06,es07,es08
+      - cluster.initial_master_nodes=es01,es02,es03,es04,es05,es06,es07,es08
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - "ES_JAVA_OPTS=-Xms4g -Xmx4g"
       - search.max_buckets=50000
       - http.max_content_length=500mb
       - "path.repo=/usr/share/elasticsearch/backup"
@@ -103,8 +103,170 @@ services:
         hard: -1
     volumes:
       - /mnt/data3:/usr/share/elasticsearch/data
-      - /mnt/data4:/usr/share/elasticsearch/backup
-      - certs:$CERTS_DIR
+      - /mnt/backup:/usr/share/elasticsearch/backup
+      - ./certs:$CERTS_DIR
 
-volumes:
-  certs:
+  es04:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
+    container_name: es04
+    environment:
+      - node.name=es04
+      - discovery.seed_hosts=es01,es02,es03,es05,es06,es07,es08
+      - cluster.initial_master_nodes=es01,es02,es03,es04,es05,es06,es07,es08
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms4g -Xmx4g"
+      - search.max_buckets=50000
+      - http.max_content_length=500mb
+      - "path.repo=/usr/share/elasticsearch/backup"
+      - ELASTIC_PASSWORD=$ELASTIC_PASSWORD
+      - xpack.security.enabled=true
+      - xpack.security.http.ssl.enabled=true
+      - xpack.security.http.ssl.key=$CERTS_DIR/es04/es04.key
+      - xpack.security.http.ssl.certificate_authorities=$CERTS_DIR/ca/ca.crt
+      - xpack.security.http.ssl.certificate=$CERTS_DIR/es04/es04.crt
+      - xpack.security.transport.ssl.enabled=true
+      - xpack.security.transport.ssl.verification_mode=certificate
+      - xpack.security.transport.ssl.certificate_authorities=$CERTS_DIR/ca/ca.crt
+      - xpack.security.transport.ssl.certificate=$CERTS_DIR/es04/es04.crt
+      - xpack.security.transport.ssl.key=$CERTS_DIR/es04/es04.key
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /mnt/data4:/usr/share/elasticsearch/data
+      - /mnt/backup:/usr/share/elasticsearch/backup
+      - ./certs:$CERTS_DIR
+
+  es05:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
+    container_name: es05
+    environment:
+      - node.name=es05
+      - discovery.seed_hosts=es01,es02,es03,es04,es06,es07,es08
+      - cluster.initial_master_nodes=es01,es02,es03,es04,es05,es06,es07,es08
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms4g -Xmx4g"
+      - search.max_buckets=50000
+      - http.max_content_length=500mb
+      - "path.repo=/usr/share/elasticsearch/backup"
+      - ELASTIC_PASSWORD=$ELASTIC_PASSWORD
+      - xpack.security.enabled=true
+      - xpack.security.http.ssl.enabled=true
+      - xpack.security.http.ssl.key=$CERTS_DIR/es05/es05.key
+      - xpack.security.http.ssl.certificate_authorities=$CERTS_DIR/ca/ca.crt
+      - xpack.security.http.ssl.certificate=$CERTS_DIR/es05/es05.crt
+      - xpack.security.transport.ssl.enabled=true
+      - xpack.security.transport.ssl.verification_mode=certificate
+      - xpack.security.transport.ssl.certificate_authorities=$CERTS_DIR/ca/ca.crt
+      - xpack.security.transport.ssl.certificate=$CERTS_DIR/es05/es05.crt
+      - xpack.security.transport.ssl.key=$CERTS_DIR/es05/es05.key
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /mnt/data5:/usr/share/elasticsearch/data
+      - /mnt/backup:/usr/share/elasticsearch/backup
+      - ./certs:$CERTS_DIR
+
+  es06:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
+    container_name: es06
+    environment:
+      - node.name=es06
+      - discovery.seed_hosts=es01,es02,es03,es04,es05,es07,es08
+      - cluster.initial_master_nodes=es01,es02,es03,es04,es05,es06,es07,es08
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms4g -Xmx4g"
+      - search.max_buckets=50000
+      - http.max_content_length=500mb
+      - "path.repo=/usr/share/elasticsearch/backup"
+      - ELASTIC_PASSWORD=$ELASTIC_PASSWORD
+      - xpack.security.enabled=true
+      - xpack.security.http.ssl.enabled=true
+      - xpack.security.http.ssl.key=$CERTS_DIR/es06/es06.key
+      - xpack.security.http.ssl.certificate_authorities=$CERTS_DIR/ca/ca.crt
+      - xpack.security.http.ssl.certificate=$CERTS_DIR/es06/es06.crt
+      - xpack.security.transport.ssl.enabled=true
+      - xpack.security.transport.ssl.verification_mode=certificate
+      - xpack.security.transport.ssl.certificate_authorities=$CERTS_DIR/ca/ca.crt
+      - xpack.security.transport.ssl.certificate=$CERTS_DIR/es06/es06.crt
+      - xpack.security.transport.ssl.key=$CERTS_DIR/es06/es06.key
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /mnt/data6:/usr/share/elasticsearch/data
+      - /mnt/backup:/usr/share/elasticsearch/backup
+      - ./certs:$CERTS_DIR
+
+  es07:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
+    container_name: es07
+    environment:
+      - node.name=es07
+      - discovery.seed_hosts=es01,es02,es03,es04,es05,es06,es08
+      - cluster.initial_master_nodes=es01,es02,es03,es04,es05,es06,es07,es08
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms4g -Xmx4g"
+      - search.max_buckets=50000
+      - http.max_content_length=500mb
+      - "path.repo=/usr/share/elasticsearch/backup"
+      - ELASTIC_PASSWORD=$ELASTIC_PASSWORD
+      - xpack.security.enabled=true
+      - xpack.security.http.ssl.enabled=true
+      - xpack.security.http.ssl.key=$CERTS_DIR/es07/es07.key
+      - xpack.security.http.ssl.certificate_authorities=$CERTS_DIR/ca/ca.crt
+      - xpack.security.http.ssl.certificate=$CERTS_DIR/es07/es07.crt
+      - xpack.security.transport.ssl.enabled=true
+      - xpack.security.transport.ssl.verification_mode=certificate
+      - xpack.security.transport.ssl.certificate_authorities=$CERTS_DIR/ca/ca.crt
+      - xpack.security.transport.ssl.certificate=$CERTS_DIR/es07/es07.crt
+      - xpack.security.transport.ssl.key=$CERTS_DIR/es07/es07.key
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /mnt/data7:/usr/share/elasticsearch/data
+      - /mnt/backup:/usr/share/elasticsearch/backup
+      - ./certs:$CERTS_DIR
+
+  es08:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
+    container_name: es08
+    environment:
+      - node.name=es08
+      - discovery.seed_hosts=es01,es02,es03,es04,es05,es06,es07
+      - cluster.initial_master_nodes=es01,es02,es03,es04,es05,es06,es07,es08
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms4g -Xmx4g"
+      - search.max_buckets=50000
+      - http.max_content_length=500mb
+      - "path.repo=/usr/share/elasticsearch/backup"
+      - ELASTIC_PASSWORD=$ELASTIC_PASSWORD
+      - xpack.security.enabled=true
+      - xpack.security.http.ssl.enabled=true
+      - xpack.security.http.ssl.key=$CERTS_DIR/es08/es08.key
+      - xpack.security.http.ssl.certificate_authorities=$CERTS_DIR/ca/ca.crt
+      - xpack.security.http.ssl.certificate=$CERTS_DIR/es08/es08.crt
+      - xpack.security.transport.ssl.enabled=true
+      - xpack.security.transport.ssl.verification_mode=certificate
+      - xpack.security.transport.ssl.certificate_authorities=$CERTS_DIR/ca/ca.crt
+      - xpack.security.transport.ssl.certificate=$CERTS_DIR/es08/es08.crt
+      - xpack.security.transport.ssl.key=$CERTS_DIR/es08/es08.key
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /mnt/data8:/usr/share/elasticsearch/data
+      - /mnt/backup:/usr/share/elasticsearch/backup
+      - ./certs:$CERTS_DIR
